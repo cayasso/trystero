@@ -47,7 +47,7 @@ export const joinRoom = initGuard(occupiedRooms, (config, ns) => {
   }
 
   const infoHashP = crypto.subtle
-    .digest('SHA-1', encodeBytes(`${libName}:${config.appId}:${ns}`))
+    .digest({ name: 'SHA-1' }, encodeBytes(`${libName}:${config.appId}:${ns}`))
     .then(buffer =>
       Array.from(new Uint8Array(buffer))
         .map(b => b.toString(36))
